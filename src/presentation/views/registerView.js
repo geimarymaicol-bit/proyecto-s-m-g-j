@@ -126,7 +126,7 @@ export function showRegisterView(container, presenter) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">confirmar</button>
+        <button type="button" id="btnConfirmar" class="btn btn-primary">confirmar</button>
       </div>
     </div>
   </div>
@@ -168,10 +168,21 @@ export function showRegisterView(container, presenter) {
     presenter.showLogin();
 });
   }
-  export function showRegisterMessage(message){
+  export function showRegisterMessage(message) {
     const messageElement = document.getElementById("register-message");
-    if(messageElement){
-        messageElement.textContent = message;
-    }
+
+    if (messageElement) {
+        const isSuccess = message.toLowerCase().includes("creada correctamente") ||
+                          message.toLowerCase().includes("creada exitosamente");
+
+        messageElement.innerHTML = `
+            <div class="alert ${isSuccess ? "alert-success" : "alert-danger"}" role="alert">
+                ${message}
+            </div>
+            `;
+    
+     }
   }
+
+
 

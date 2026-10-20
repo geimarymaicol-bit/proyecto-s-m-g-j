@@ -10,6 +10,7 @@
  * NO contiene lógica de negocio.
  */
 
+import { validausuriologeado } from "../../domain/Servicios/servicio.js";
 let currentPresenter = null;
 
 export function showClassView(
@@ -269,7 +270,7 @@ export function renderClasses(
                 <div class="class-card-actions">
 
                     <button
-                        class="button button-secondary"
+                        class="button button-secondary btn-editan"
                         data-action="edit"
                         data-id="${classItem.id}"
                     >
@@ -290,7 +291,7 @@ export function renderClasses(
 
         `
     ).join("");
-
+    validausuriologeado();
     /*
      * Eventos de Editar
      */

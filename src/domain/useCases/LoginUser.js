@@ -24,7 +24,7 @@ export class LoginUser {
 
         if (!user) {
             throw new Error(
-                "Correo o contraseña incorrectos."
+                "verifica correo y contraseña."
             );
         }
 
