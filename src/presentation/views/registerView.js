@@ -150,7 +150,7 @@ export function showRegisterView(container, presenter) {
         document.getElementById("confirmName").textContent = userData.name;
         document.getElementById("confirmEmail").textContent = userData.email;
         document.getElementById("confirmContrasena").textContent = "******";
-        document.getElementById("confirmTipodeusuario").textContent = userData.tipoUsuario;
+        document.getElementById("confirmTipodeusuario").textContent = userData.usuario;
         //presenter.register(userData);
          registerForm.dataset.userData =JSON.stringify(userData);
          modal.show();

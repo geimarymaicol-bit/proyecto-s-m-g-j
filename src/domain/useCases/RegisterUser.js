@@ -65,8 +65,8 @@ export class RegisterUser {
         const user = new User({
             name: userData.name,
             email: userData.email,
-            passwordHash:userData.password,
-            usurio: userData.usuario
+            passwordHash: passwordData,
+            usuario: userData.usuario
         });
 
         return await this.userRepository.save(user);

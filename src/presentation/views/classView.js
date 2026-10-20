@@ -10,7 +10,7 @@
  * NO contiene lógica de negocio.
  */
 
-import { validausuriologeado } from "../../domain/Servicios/servicio.js";
+import { validarUsuarioLogeado } from "../../domain/Servicios/servicio.js";
 let currentPresenter = null;
 
 export function showClassView(
@@ -291,7 +291,7 @@ export function renderClasses(
 
         `
     ).join("");
-    validausuriologeado();
+    validarUsuarioLogeado();
     /*
      * Eventos de Editar
      */

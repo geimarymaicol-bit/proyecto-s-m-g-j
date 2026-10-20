@@ -21,7 +21,7 @@ export class RegisterPresenter {
     async register(userData) {
 
         try {
-
+            console.log("UserData", userData);
             await this.registerUser.execute(userData);
 
             showRegisterMessage(
@@ -32,7 +32,7 @@ export class RegisterPresenter {
 
             showRegisterMessage(
                 error.message,
-                danger
+                "danger"
             );
         }
     }

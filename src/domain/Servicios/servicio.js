@@ -3,7 +3,7 @@ export function validarUsuarioLogeado(){
         localStorage.getItem("usuarioActivo")
     );
     console.log("Soy usuarioActivo de la funcion", usuarioActivo);
-    const esEstudiante = usuarioActivo && usuarioActivo.TipoUsuario === "estudiante";
+    const esEstudiante = usuarioActivo && usuarioActivo.usuario === "estudiante";
     //me retorna un true o un false
     //true cuando es verdadera la validacion
     if (esEstudiante) {
