@@ -106,10 +106,6 @@ export function showRegisterView(container, presenter) {
                 ></p>
 
             </div>
-        <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -122,11 +118,15 @@ export function showRegisterView(container, presenter) {
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <p><strong>Nombre</strong> <span id="confirmName"<>/span<>/p>
+        <p><strong>Correo</strong> <span id="confirmEmail"<>/span<>/p>
+        <p><strong>contraseña</strong> <span id="confirmContrasena"<>/span<>/p>
+        <p><strong>tipo de usuario</strong> <span id="confirmTipodeusuario"<>/span<>/p>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-primary">confirmar</button>
       </div>
     </div>
   </div>
@@ -134,37 +134,44 @@ export function showRegisterView(container, presenter) {
         </section>
     `;
 
-    const registerForm =
-        document.getElementById("register-form");
-
+    const registerForm = document.getElementById("register-form");
     registerForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const formData = new FormData(registerForm);
-
+        const modalElemento = document.getElementById("staticBackdrop");
+        const modal = new bootstrap.Modal(modalElemento);
         const userData = {
             name: formData.get("name"),
             email: formData.get("email"),
             password: formData.get("password"),
             usuario: formData.get("usuario")
         };
-
-        presenter.register(userData);
+        document.getElementById("confirmName").textContent = userData.name;
+        document.getElementById("confirmEmail").textContent = userData.email;
+        document.getElementById("confirmContrasena").textContent = "******";
+        document.getElementById("confirmTipodeusuario").textContent = userData.tipoUsuario;
+        //presenter.register(userData);
+         registerForm.dataset.userData =JSON.stringify(userData);
+         modal.show();
     });
+    document.getElementById("btnConfirmar").addEventListener("click", () => {
+    const userData = JSON.parse(registerForm.dataset.userData);
 
-    const loginButton =
-        document.getElementById("show-login");
-
+    presenter.register(userData);
+    const modalId = document.getElementById("staticBackdrop");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalId);
+    modal.hide();
+});  
+    const loginButton = document.getElementById("show-login");    
     loginButton.addEventListener("click", () => {
-        presenter.showLogin();
-    });
-}
-
-export function showRegisterMessage(message) {
-    const messageElement =
-        document.getElementById("register-message");
-
-    if (messageElement) {
+    presenter.showLogin();
+});
+  }
+  export function showRegisterMessage(message){
+    const messageElement = document.getElementById("register-message");
+    if(messageElement){
         messageElement.textContent = message;
     }
-}
+  }
+
